@@ -1,0 +1,15 @@
+[
+    {
+        "Ident": "1047600",
+        "variant": 2,
+        "offset": -20,
+        "steps/mili":10
+    },
+    {
+        "Ident": "1046914",
+        "variant": 1,
+        "offset": -20,
+        "steps/mili":10
+    }
+
+]
