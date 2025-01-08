@@ -80,7 +80,7 @@ def read_from_scanner(scanner_device):
             else:
                 time.sleep(0.1)
 
-scanner_device = '/dev/ttyACM0'
+scanner_device = '/dev/scan'
 
 # HOME lépések lefuttatása
 run_home_sequence()
