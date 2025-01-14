@@ -2,14 +2,14 @@
     {
         "Ident": "1047600",
         "variant": 2,
-        "offset": -20,
-        "steps/mili":10
+        "offset": -71,
+        "steps/mili":52.2
     },
     {
         "Ident": "1046914",
-        "variant": 1,
-        "offset": -20,
-        "steps/mili":10
+        "variant": 2,
+        "offset": -71,
+        "steps/mili":52.2
     }
 
 ]

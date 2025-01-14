@@ -3,90 +3,257 @@ import json
 import os
 import time
 import serial
+import threading
+import tkinter as tk
+import platform
+import sys
 
-file_path='3Phase-KSK-KW2-2025.xlsx'
-ksk_table=pd.read_excel(file_path, sheet_name='KSK')
-table_3pass=pd.read_excel(file_path, sheet_name='3pass')
-with open('db.json','r') as f:
-    db_data=json.load(f)
+# Állítsd be a fullscreen változót True-ra a teljes képernyős mód aktiválásához
+fullscreen = True
 
-# Nyitva tartjuk a soros portot program induláskor, nem zárjuk be.
-ser = serial.Serial('/dev/cino', 9600, timeout=1)
+class SimpleSerialApp:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Simple Serial App")
 
-def get_variant_and_offsets(ident_value):
-    for item in db_data:
-        if item["Ident"] == ident_value:
-            return item["variant"], int(item["offset"]), int(item["steps/mili"])
-    return None, 0, 1
+        # Teljes képernyős mód beállítása az operációs rendszer alapján
+        current_os = platform.system()
+        if current_os == 'Windows':
+            try:
+                self.master.state('zoomed')  # Windows
+            except:
+                pass  # Ha hiba történik, figyelmen kívül hagyjuk
+        elif current_os in ['Linux', 'Darwin']:
+            try:
+                self.master.attributes('-fullscreen', fullscreen)  # Unix/Linux/Mac
+            except:
+                # Ha '-fullscreen' nem működik, állítsd be az ablak méretét manuálisan
+                screen_width = self.master.winfo_screenwidth()
+                screen_height = self.master.winfo_screenheight()
+                self.master.geometry(f"{screen_width}x{screen_height}+0+0")
 
-def find_and_save_data(input_value):
-    ksk_row = ksk_table[ksk_table['KSKNr'] == input_value]
-    if not ksk_row.empty:
-        pmod_val = str(ksk_row['Ident'].iloc[0])
-        table_3pass.columns = table_3pass.columns.str.strip()
-        pass_row = table_3pass[table_3pass['P-mod'] == pmod_val]
-        if not pass_row.empty:
-            ident_value = str(pass_row['Ident'].iloc[0])
-            length = int(pass_row['Stripping length'].iloc[0])
-            variant, base_offset, steps_mili = get_variant_and_offsets(ident_value)
-            final_offset = (length + base_offset) * steps_mili
+        # Kilépés a teljes képernyős módból az Escape billentyűvel
+        self.master.bind("<Escape>", self.exit_fullscreen)
 
-            data_to_save = {
-                "Ident": ident_value,
-                "Stripping length": length,
-                "variant": variant,
-                "final_offset": final_offset
-            }
-            with open('output.json', 'w') as json_file:
-                json.dump(data_to_save, json_file, indent=4)
+        # Inicializáljuk a soros portot
+        try:
+            self.ser = serial.Serial('/dev/cino', 9600, timeout=1)
+            print("Soros port sikeresen megnyitva.")
+        except serial.SerialException as e:
+            print(f"Serial Port Error: Could not open serial port: {e}")
+            self.ser = None
 
-            print(f"KSKNr: {input_value} -> P-mod: {pmod_val} -> Ident: {ident_value}")
-            print(f"Stripping length: {length}, variant: {variant}, final_offset: {final_offset}")
+        # Adatok betöltése
+        try:
+            file_path = '3Phase-KSK-KW2-2025.xlsx'
+            self.ksk_table = pd.read_excel(file_path, sheet_name='KSK')
+            self.table_3pass = pd.read_excel(file_path, sheet_name='3pass')
+            with open('db.json','r') as f:
+                self.db_data = json.load(f)
+            print("Adatok sikeresen betöltve.")
+        except Exception as e:
+            print(f"Data Loading Error: Failed to load data: {e}")
+            self.ksk_table = pd.DataFrame()
+            self.table_3pass = pd.DataFrame()
+            self.db_data = []
 
-            # Küldendő JSON
-            to_send = json.dumps({"V": str(variant), "S": str(final_offset)})
-            print(f"Sending over serial: {to_send}")
+        # GUI komponensek létrehozása
+        self.create_widgets()
 
-            # Írás a már megnyitott soros portra
-            ser.write(to_send.encode('utf-8'))
-
-            time.sleep(0.1)
-            response = ser.readline().decode('utf-8', errors='ignore').strip()
-            if response:
-                print(f"Received from serial: {response}")
+        # Szkenner figyelése
+        self.scanner_device = '/dev/scan'
+        if os.path.exists(self.scanner_device):
+            threading.Thread(target=self.read_from_scanner, args=(self.scanner_device,), daemon=True).start()
+            print(f"Szkenner eszköz figyelése: {self.scanner_device}")
         else:
-            print(f"No matching P-mod in 3pass for {pmod_val}")
-    else:
-        print(f"No matching KSK row for KSKNr: {input_value}")
+            print(f"Scanner device not found: {self.scanner_device}")
 
-def run_home_sequence():
-    # "HOME" parancs küldése a program indulásakor, és a válasz beolvasása
-    ser.write("HOME".encode('utf-8'))
-    time.sleep(0.1)
-    response = ser.readline().decode('utf-8', errors='ignore').strip()
-    if response:
-        print(f"HOME response: {response}")
+        # HOME szekvencia indítása, de csak miután megérkezett a BOOT_OK
+        if self.ser:
+            threading.Thread(target=self.wait_for_boot_ok, daemon=True).start()
 
-def read_from_scanner(scanner_device):
-    print("Listening for input from scanner...")
-    with open(scanner_device, 'rb') as scanner:
-        while True:
-            raw_line = scanner.readline()
-            if raw_line:
-                decoded_line = raw_line.decode('latin-1', errors='ignore').strip()
-                digits = ''.join(ch for ch in decoded_line if ch.isdigit())
-                if digits:
-                    find_and_save_data(int(digits))
+    def wait_for_boot_ok(self):
+        """Várakozás a BOOT_OK parancsra a soros porttól."""
+        if self.ser and self.ser.is_open:
+            try:
+                print("Waiting for BOOT_OK...")
+                while True:
+                    response = self.ser.readline().decode('utf-8', errors='ignore').strip()
+                    if response == "BOOT_OK":
+                        print("BOOT_OK received.")
+                        # Miután megérkezett a BOOT_OK, elindítjuk a HOME szekvenciát
+                        self.run_home_sequence()
+                        break
+                    elif response:
+                        print(f"Received: {response}")
+            except Exception as e:
+                print(f"Error waiting for BOOT_OK: {e}")
+        else:
+            print("Serial port is not open for BOOT_OK waiting.")
+
+    def exit_fullscreen(self, event=None):
+        """Kilépés a teljes képernyős módból az Escape billentyűvel."""
+        current_os = platform.system()
+        if current_os == 'Windows':
+            self.master.state('normal')  # Windows
+        elif current_os in ['Linux', 'Darwin']:
+            self.master.attributes('-fullscreen', False)  # Unix/Linux/Mac
+
+    def create_widgets(self):
+        # Grid konfigurálása a középre igazításhoz
+        self.master.configure(bg='white')  # Háttérszín beállítása
+        self.master.grid_rowconfigure(0, weight=1)
+        self.master.grid_columnconfigure(0, weight=1)
+
+        main_frame = tk.Frame(self.master, bg='white')  # Fő keret fehér háttérrel
+        main_frame.grid(row=0, column=0, sticky="nsew")
+        main_frame.grid_rowconfigure(0, weight=1)
+        main_frame.grid_rowconfigure(1, weight=1)
+        main_frame.grid_columnconfigure(0, weight=1)
+
+        # Scanned Data Label középre igazítva
+        scanned_frame = tk.Frame(main_frame, bg='white')  # Keret fehér háttérrel
+        scanned_frame.grid(row=0, column=0, pady=20, padx=20, sticky="nsew")
+        scanned_frame.grid_rowconfigure(0, weight=1)
+        scanned_frame.grid_columnconfigure(0, weight=1)
+
+        self.scanned_var = tk.StringVar(value="HV")
+        scanned_label = tk.Label(
+            scanned_frame,
+            textvariable=self.scanned_var,
+            font=("Arial", 100, "bold"),
+            fg='black',
+            bg='white',
+            anchor='center'
+        )
+        scanned_label.pack(expand=True)
+
+        # Stripping Length Label középre igazítva
+        stripping_frame = tk.Frame(main_frame, bg='white')  # Keret fehér háttérrel
+        stripping_frame.grid(row=1, column=0, pady=20, padx=20, sticky="nsew")
+        stripping_frame.grid_rowconfigure(0, weight=1)
+        stripping_frame.grid_columnconfigure(0, weight=1)
+
+        self.stripping_length_var = tk.StringVar(value="")
+        stripping_label = tk.Label(
+            stripping_frame,
+            textvariable=self.stripping_length_var,
+            font=("Arial", 80, "bold"),
+            fg='black',
+            bg='white',
+            anchor='center'
+        )
+        stripping_label.pack(expand=True)
+
+    def update_scanned_data(self, data):
+        """Biztonságos frissítés a 'Scanned Data' címkén."""
+        self.scanned_var.set(data)
+
+    def update_stripping_length(self, length):
+        """Biztonságos frissítés a 'Stripping Length' címkén."""
+        self.stripping_length_var.set(length)
+
+    def get_variant_and_offsets(self, ident_value):
+        """Lekéri a variant, offset és steps/mili értékeket az ident_value alapján."""
+        for item in self.db_data:
+            if item["Ident"] == ident_value:
+                return item["variant"], int(item["offset"]), int(item["steps/mili"])
+        return None, 0, 1
+
+    def find_and_save_data(self, input_value):
+        """Megkeresi a KSKNr-hez tartozó adatokat, elmenti JSON-ba és küldi a soros portra."""
+        ksk_row = self.ksk_table[self.ksk_table['KSKNr'] == input_value]
+        if not ksk_row.empty:
+            pmod_val = str(ksk_row['Ident'].iloc[0])
+            self.table_3pass.columns = self.table_3pass.columns.str.strip()
+            pass_row = self.table_3pass[self.table_3pass['P-mod'] == pmod_val]
+            if not pass_row.empty:
+                ident_value = str(pass_row['Ident'].iloc[0])
+                length = int(pass_row['Stripping length'].iloc[0])
+                variant, base_offset, steps_mili = self.get_variant_and_offsets(ident_value)
+                final_offset = (length + base_offset) * steps_mili
+                print(ident_value, length, base_offset, steps_mili, final_offset)
+                data_to_save = {
+                    "Ident": ident_value,
+                    "Stripping length": length,
+                    "variant": variant,
+                    "final_offset": final_offset
+                }
+                try:
+                    with open('output.json', 'w') as json_file:
+                        json.dump(data_to_save, json_file, indent=4)
+                    print("output.json successfully saved.")
+                except Exception as e:
+                    print(f"Error saving output.json: {e}")
+                    return
+
+                # JSON előkészítése küldéshez
+                to_send = json.dumps({"V": str(variant), "S": str(final_offset)})
+
+                if self.ser and self.ser.is_open:
+                    try:
+                        self.ser.write(to_send.encode('utf-8'))
+                        time.sleep(0.1)
+                        response = self.ser.readline().decode('utf-8', errors='ignore').strip()
+                        if response:
+                            print(f"Serial response: {response}")
+                        else:
+                            print("No response from serial device.")
+                    except Exception as e:
+                        print(f"Serial communication error: {e}")
+                else:
+                    print("Serial port is not open.")
+
+                # Frissítjük a 'Stripping Length' címkét
+                self.update_stripping_length(length)
             else:
+                print(f"No matching P-mod in 3pass for {pmod_val}")
+                self.update_stripping_length("")
+        else:
+            print(f"No matching KSK row for KSKNr: {input_value}")
+            self.update_stripping_length("")
+
+    def run_home_sequence(self):
+        """Elküldi a HOME parancsot a soros portra és várja a választ."""
+        if self.ser and self.ser.is_open:
+            try:
+                self.ser.write("HOME".encode('utf-8'))
+                print("Sent 'HOME' command.")
                 time.sleep(0.1)
+                response = self.ser.readline().decode('utf-8', errors='ignore').strip()
+                if response:
+                    print(f"HOME response: {response}")
+                else:
+                    print("No response to 'HOME' command.")
+            except Exception as e:
+                print(f"Error during HOME sequence: {e}")
+        else:
+            print("Serial port is not open for HOME sequence.")
 
-scanner_device = '/dev/scan'
+    def read_from_scanner(self, scanner_device):
+        """Folyamatosan olvassa a szkenner bemenetét és feldolgozza a KSKNr-t."""
+        try:
+            with open(scanner_device, 'rb') as scanner:
+                while True:
+                    raw_line = scanner.readline()
+                    if raw_line:
+                        try:
+                            decoded_line = raw_line.decode('latin-1', errors='ignore').strip()
+                            digits = ''.join(ch for ch in decoded_line if ch.isdigit())
+                            if digits:
+                                self.update_scanned_data(digits)
+                                self.find_and_save_data(int(digits))
+                        except Exception as decode_error:
+                            print(f"Decoding error: {decode_error}")
+                    else:
+                        time.sleep(0.1)
+        except Exception as e:
+            print(f"Error reading from scanner: {e}")
 
-# HOME lépések lefuttatása
-run_home_sequence()
+def main():
+    root = tk.Tk()
+    app = SimpleSerialApp(root)
+    root.mainloop()
 
-# Ha létezik a szkenner eszköz, akkor elindítjuk a beolvasást
-if os.path.exists(scanner_device):
-    read_from_scanner(scanner_device)
-else:
-    print(f"Scanner device not found: {scanner_device}")
+if __name__ == "__main__":
+    main()
