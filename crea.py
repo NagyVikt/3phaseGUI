@@ -3,8 +3,8 @@
 """
 create_json_db.py
 
-Reads the "3Phase-KSK-KW2-2025.xlsx" file and builds a JSON mapping
-for each KSKNr -> { 'pmod': <Ident>, 'offset': <default or 0> }.
+Reads the "3Phase-KSK-KW2-2025.xlsx" file to build a JSON mapping
+for each KSKNr -> { 'pmod': <Ident>, 'offset': <StrippingLength> }.
 
 Usage:
     python create_json_db.py
@@ -37,24 +37,31 @@ def main():
             # If either is empty, skip
             continue
 
-        # Convert to string just in case
+        # Convert to appropriate types
         ksk_nr_str = str(ksk_nr).strip()
         ident_str = str(ident).strip()
 
-        # 4) (Optional) Check if this Ident also appears in 3pass's "P-mod"
-        #    so you know whether it’s valid or not.
+        # 4) Check if this Ident appears in 3pass's "P-mod"
         pass_row = pass_df[pass_df['P-mod'] == ident_str]
         if pass_row.empty:
-            # Not found in 3pass, but we’ll still store something
+            # Not found in 3pass, skip this row
             print(f"[Warning] P-mod '{ident_str}' from KSKNr {ksk_nr_str} not found in '3pass' sheet.")
+            continue
 
-        # 5) Store the default offset as 0 (or any other default you like)
+        # 5) Get the stripping length value
+        stripping_length = pass_row.iloc[0]['Stripping length']
+        stripping_length = stripping_length if not pd.isna(stripping_length) else 0  # Default to 0 if missing
+
+        # Convert stripping_length to a regular Python type (int/float)
+        stripping_length = int(stripping_length) if pd.api.types.is_integer_dtype(stripping_length) else float(stripping_length)
+
+        # 6) Store the pmod and stripping length
         ksk_offsets[ksk_nr_str] = {
             "pmod": ident_str,
-            "offset": 0
+            "stripping_length": stripping_length
         }
 
-    # 6) Write out the JSON
+    # 7) Write out the JSON
     output_file = 'ksk_offsets.json'
     try:
         with open(output_file, 'w', encoding='utf-8') as f:

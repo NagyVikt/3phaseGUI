@@ -319,3 +319,267 @@
 2025-01-14 15:18:13,598 [INFO] Sent to machine: {"V": "2", "S": "1150"}
 2025-01-14 15:18:13,699 [INFO] Serial response: POS_OK
 2025-01-14 15:18:13,700 [INFO] Steps updated: 1150
+2025-01-14 15:19:48,599 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:19:51,603 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:19:56,869 [INFO] Scanned raw input: 830569527814
+2025-01-14 15:19:56,869 [INFO] Extracted KSKNr: 830569527814
+2025-01-14 15:19:56,870 [INFO] Scanned KSKNr updated: 830569527814
+2025-01-14 15:19:56,871 [INFO] PMOD for KSKNr 830569527814: P8378690
+2025-01-14 15:19:56,871 [INFO] Steps for PMOD P8378690: 1120
+2025-01-14 15:19:56,871 [INFO] Sent to machine: {"V": "2", "S": "1120"}
+2025-01-14 15:19:56,972 [INFO] Serial response: POS_OK
+2025-01-14 15:19:56,973 [INFO] Steps updated: 1120
+2025-01-14 15:21:15,689 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:21:16,664 [INFO] Scanned raw input: 69527814
+2025-01-14 15:21:16,664 [INFO] Extracted KSKNr: 69527814
+2025-01-14 15:21:16,665 [INFO] Scanned KSKNr updated: 69527814
+2025-01-14 15:21:16,665 [WARNING] No PMOD found for KSKNr: 69527814
+2025-01-14 15:21:16,666 [INFO] Steps updated: 
+2025-01-14 15:21:23,607 [INFO] Scanned raw input: 69527814
+2025-01-14 15:21:23,608 [INFO] Extracted KSKNr: 69527814
+2025-01-14 15:21:23,609 [INFO] Scanned KSKNr updated: 69527814
+2025-01-14 15:21:23,609 [WARNING] No PMOD found for KSKNr: 69527814
+2025-01-14 15:21:23,609 [INFO] Steps updated: 
+2025-01-14 15:21:29,155 [INFO] Scanned raw input: 830569527814
+2025-01-14 15:21:29,156 [INFO] Extracted KSKNr: 830569527814
+2025-01-14 15:21:29,157 [INFO] Scanned KSKNr updated: 830569527814
+2025-01-14 15:21:29,157 [INFO] PMOD for KSKNr 830569527814: P8378690
+2025-01-14 15:21:29,157 [INFO] Steps for PMOD P8378690: 1140
+2025-01-14 15:21:29,158 [INFO] Sent to machine: {"V": "2", "S": "1140"}
+2025-01-14 15:21:29,259 [INFO] Serial response: POS_OK
+2025-01-14 15:21:29,260 [INFO] Steps updated: 1140
+2025-01-14 15:21:40,720 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:21:41,722 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:21:42,105 [INFO] Scanned raw input: 830569527814
+2025-01-14 15:21:42,106 [INFO] Extracted KSKNr: 830569527814
+2025-01-14 15:21:42,107 [INFO] Scanned KSKNr updated: 830569527814
+2025-01-14 15:21:42,107 [INFO] PMOD for KSKNr 830569527814: P8378690
+2025-01-14 15:21:42,107 [INFO] Steps for PMOD P8378690: 1180
+2025-01-14 15:21:42,108 [INFO] Sent to machine: {"V": "2", "S": "1180"}
+2025-01-14 15:21:42,209 [INFO] Serial response: POS_OK
+2025-01-14 15:21:42,210 [INFO] Steps updated: 1180
+2025-01-14 15:23:05,819 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:06,822 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:07,824 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:08,827 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:09,829 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:10,832 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:11,610 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:23:11,611 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:23:11,612 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:23:11,612 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:23:11,612 [INFO] Steps for PMOD P8378691: 1900
+2025-01-14 15:23:11,613 [INFO] Sent to machine: {"V": "2", "S": "1900"}
+2025-01-14 15:23:11,714 [INFO] Serial response: RELEASE_OK
+2025-01-14 15:23:11,715 [INFO] Steps updated: 1900
+2025-01-14 15:23:11,834 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:12,837 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:13,840 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:14,842 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:15,845 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:16,848 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:17,850 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:18,853 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:19,856 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:20,858 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:21,861 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:22,864 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:23,866 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:24,869 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:25,872 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:26,875 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:27,878 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:28,880 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:29,883 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:30,886 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:31,889 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:32,891 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:33,894 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:34,897 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:35,900 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:36,902 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:37,905 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:38,908 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:39,910 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:40,913 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:41,916 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:42,918 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:43,921 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:44,924 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:45,926 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:46,929 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:47,931 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:48,934 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:49,937 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:50,939 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:51,942 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:52,945 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:53,948 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:54,951 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:55,954 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:56,956 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:57,959 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:58,962 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:23:59,965 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:00,967 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:01,970 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:02,972 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:03,975 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:04,978 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:05,981 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:06,983 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:07,986 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:08,988 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:09,991 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:10,994 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:11,996 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:12,999 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:14,002 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:15,004 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:16,007 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:17,010 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:17,462 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:24:17,463 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:24:17,464 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:24:17,465 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:24:17,465 [INFO] Steps for PMOD P8378691: 1900
+2025-01-14 15:24:17,465 [INFO] Sent to machine: {"V": "2", "S": "1900"}
+2025-01-14 15:24:17,566 [INFO] Serial response: RELEASE_OK
+2025-01-14 15:24:17,567 [INFO] Steps updated: 1900
+2025-01-14 15:24:18,012 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:19,015 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:20,018 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:21,021 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:22,023 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:23,001 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:24:23,002 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:24:23,003 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:24:23,003 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:24:23,003 [INFO] Steps for PMOD P8378691: 1900
+2025-01-14 15:24:23,004 [INFO] Sent to machine: {"V": "2", "S": "1900"}
+2025-01-14 15:24:23,025 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:23,105 [INFO] Serial response: RELEASE_OK
+2025-01-14 15:24:23,106 [INFO] Steps updated: 1900
+2025-01-14 15:24:24,027 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:25,030 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:26,033 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:27,035 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:28,037 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:28,602 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:24:28,603 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:24:28,604 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:24:28,604 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:24:28,604 [INFO] Steps for PMOD P8378691: 1900
+2025-01-14 15:24:28,605 [INFO] Sent to machine: {"V": "2", "S": "1900"}
+2025-01-14 15:24:28,706 [INFO] Serial response: POS_OK
+2025-01-14 15:24:28,707 [INFO] Steps updated: 1900
+2025-01-14 15:24:29,040 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:30,043 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:31,046 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:32,048 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:33,051 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:34,054 [ERROR] JSON decode error in 'pmod_settings.json': Expecting ',' delimiter: line 30 column 23 (char 441)
+2025-01-14 15:24:35,056 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:24:46,134 [INFO] Scanned raw input: 8305695278
+2025-01-14 15:24:46,135 [INFO] Extracted KSKNr: 8305695278
+2025-01-14 15:24:46,135 [INFO] Scanned KSKNr updated: 8305695278
+2025-01-14 15:24:46,136 [WARNING] No PMOD found for KSKNr: 8305695278
+2025-01-14 15:24:46,136 [INFO] Steps updated: 
+2025-01-14 15:24:50,373 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:24:50,374 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:24:50,374 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:24:50,375 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:24:50,375 [INFO] Steps for PMOD P8378691: 1750
+2025-01-14 15:24:50,375 [INFO] Sent to machine: {"V": "2", "S": "1750"}
+2025-01-14 15:24:50,476 [INFO] Serial response: POS_OK
+2025-01-14 15:24:50,478 [INFO] Steps updated: 1750
+2025-01-14 15:29:52,419 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:29:56,852 [INFO] Scanned raw input: 830569527904
+2025-01-14 15:29:56,853 [INFO] Extracted KSKNr: 830569527904
+2025-01-14 15:29:56,854 [INFO] Scanned KSKNr updated: 830569527904
+2025-01-14 15:29:56,854 [INFO] PMOD for KSKNr 830569527904: P8378692
+2025-01-14 15:29:56,854 [INFO] Steps for PMOD P8378692: 2000
+2025-01-14 15:29:56,855 [INFO] Sent to machine: {"V": "2", "S": "2000"}
+2025-01-14 15:29:56,956 [INFO] Serial response: POS_OK
+2025-01-14 15:29:56,957 [INFO] Steps updated: 2000
+2025-01-14 15:32:54,641 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:32:55,643 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:32:58,566 [INFO] Scanned raw input: 830569527904
+2025-01-14 15:32:58,567 [INFO] Extracted KSKNr: 830569527904
+2025-01-14 15:32:58,567 [INFO] Scanned KSKNr updated: 830569527904
+2025-01-14 15:32:58,568 [INFO] PMOD for KSKNr 830569527904: P8378692
+2025-01-14 15:32:58,568 [INFO] Steps for PMOD P8378692: 2200
+2025-01-14 15:32:58,569 [INFO] Sent to machine: {"V": "2", "S": "2200"}
+2025-01-14 15:32:58,670 [INFO] Serial response: RELEASE_OK
+2025-01-14 15:32:58,671 [INFO] Steps updated: 2200
+2025-01-14 15:38:34,052 [INFO] Loaded 'ksk_pmod.json' successfully.
+2025-01-14 15:41:39,273 [INFO] Entered fullscreen mode on Linux.
+2025-01-14 15:41:39,275 [INFO] Serial port '/dev/cino' successfully opened.
+2025-01-14 15:41:39,277 [INFO] Loaded 'ksk_pmod.json' successfully.
+2025-01-14 15:41:39,278 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:41:39,343 [INFO] Monitoring scanner device: /dev/scan
+2025-01-14 15:41:39,344 [INFO] JSON watcher thread started.
+2025-01-14 15:41:39,345 [INFO] Started JSON watcher thread.
+2025-01-14 15:41:39,345 [INFO] Started reading from scanner device: /dev/scan
+2025-01-14 15:41:49,589 [INFO] Scanned raw input: 830569527904
+2025-01-14 15:41:49,590 [INFO] Extracted KSKNr: 830569527904
+2025-01-14 15:41:49,591 [INFO] Scanned KSKNr updated: 830569527904
+2025-01-14 15:41:49,591 [INFO] PMOD for KSKNr 830569527904: P8378692
+2025-01-14 15:41:49,592 [INFO] Steps for PMOD P8378692: 2200
+2025-01-14 15:41:49,592 [INFO] Stripping Length for KSKNr 830569527904: None
+2025-01-14 15:41:49,592 [INFO] Sent to machine: {"V": "2", "S": "2200"}
+2025-01-14 15:41:49,693 [INFO] Serial response: BOOT_OK
+2025-01-14 15:41:49,694 [INFO] Steps updated: 2200
+2025-01-14 15:41:49,695 [INFO] Stripping Length updated: None
+2025-01-14 15:42:11,380 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:42:13,716 [INFO] Scanned raw input: 830569527904
+2025-01-14 15:42:13,717 [INFO] Extracted KSKNr: 830569527904
+2025-01-14 15:42:13,717 [INFO] Scanned KSKNr updated: 830569527904
+2025-01-14 15:42:13,718 [INFO] PMOD for KSKNr 830569527904: P8378692
+2025-01-14 15:42:13,718 [INFO] Steps for PMOD P8378692: 2150
+2025-01-14 15:42:13,718 [INFO] Stripping Length for KSKNr 830569527904: None
+2025-01-14 15:42:13,719 [INFO] Sent to machine: {"V": "2", "S": "2150"}
+2025-01-14 15:42:13,820 [INFO] Serial response: POS_OK
+2025-01-14 15:42:13,821 [INFO] Steps updated: 2150
+2025-01-14 15:42:13,821 [INFO] Stripping Length updated: None
+2025-01-14 15:43:15,452 [INFO] Loaded 'ksk_pmod.json' successfully.
+2025-01-14 15:43:22,449 [INFO] Entered fullscreen mode on Linux.
+2025-01-14 15:43:22,452 [INFO] Serial port '/dev/cino' successfully opened.
+2025-01-14 15:43:22,454 [INFO] Loaded 'ksk_pmod.json' successfully.
+2025-01-14 15:43:22,454 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-14 15:43:22,505 [INFO] Monitoring scanner device: /dev/scan
+2025-01-14 15:43:22,506 [INFO] JSON watcher thread started.
+2025-01-14 15:43:22,506 [INFO] Started JSON watcher thread.
+2025-01-14 15:43:22,506 [INFO] Started reading from scanner device: /dev/scan
+2025-01-14 15:43:31,106 [INFO] Scanned raw input: 69527904
+2025-01-14 15:43:31,107 [INFO] Extracted KSKNr: 69527904
+2025-01-14 15:43:31,108 [INFO] Scanned KSKNr updated: 69527904
+2025-01-14 15:43:31,108 [WARNING] No PMOD found for KSKNr: 69527904
+2025-01-14 15:43:31,120 [INFO] Steps updated: 
+2025-01-14 15:43:31,121 [INFO] Stripping Length updated: 
+2025-01-14 15:43:43,654 [INFO] Scanned raw input: 69527859
+2025-01-14 15:43:43,654 [INFO] Extracted KSKNr: 69527859
+2025-01-14 15:43:43,655 [INFO] Scanned KSKNr updated: 69527859
+2025-01-14 15:43:43,655 [WARNING] No PMOD found for KSKNr: 69527859
+2025-01-14 15:43:43,658 [INFO] Steps updated: 
+2025-01-14 15:43:43,659 [INFO] Stripping Length updated: 
+2025-01-14 15:43:45,892 [INFO] Scanned raw input: 830569527859
+2025-01-14 15:43:45,892 [INFO] Extracted KSKNr: 830569527859
+2025-01-14 15:43:45,893 [INFO] Scanned KSKNr updated: 830569527859
+2025-01-14 15:43:45,893 [INFO] PMOD for KSKNr 830569527859: P8378691
+2025-01-14 15:43:45,894 [INFO] Steps for PMOD P8378691: 1750
+2025-01-14 15:43:45,894 [INFO] Stripping Length for KSKNr 830569527859: 104
+2025-01-14 15:43:45,894 [INFO] Sent to machine: {"V": "2", "S": "1750"}
+2025-01-14 15:43:45,995 [INFO] Serial response: BOOT_OK
+2025-01-14 15:43:45,997 [INFO] Steps updated: 1750
+2025-01-14 15:43:45,998 [INFO] Stripping Length updated: 104
+2025-01-14 15:43:52,865 [INFO] Scanned raw input: 830569527904
+2025-01-14 15:43:52,866 [INFO] Extracted KSKNr: 830569527904
+2025-01-14 15:43:52,866 [INFO] Scanned KSKNr updated: 830569527904
+2025-01-14 15:43:52,867 [INFO] PMOD for KSKNr 830569527904: P8378692
+2025-01-14 15:43:52,867 [INFO] Steps for PMOD P8378692: 2150
+2025-01-14 15:43:52,867 [INFO] Stripping Length for KSKNr 830569527904: 114
+2025-01-14 15:43:52,868 [INFO] Sent to machine: {"V": "2", "S": "2150"}
+2025-01-14 15:43:52,968 [INFO] Serial response: POS_OK
+2025-01-14 15:43:52,970 [INFO] Steps updated: 2150
+2025-01-14 15:43:52,971 [INFO] Stripping Length updated: 114
