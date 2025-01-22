@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 
 # Set fullscreen to True to activate fullscreen mode
-fullscreen = False
+fullscreen = True
 
 class SimpleSerialApp:
     def __init__(self, master):
@@ -51,7 +51,16 @@ class SimpleSerialApp:
 
         # Initialize serial port
         self.ser = None
-        self.initialize_serial_port('/dev/cino')  # Update this path as needed
+        self.serial_port = '/dev/cino'  # Update this path as needed
+        self.initialize_serial_port(self.serial_port)
+
+        # Start serial port monitor thread
+        threading.Thread(
+            target=self.monitor_serial_port, 
+            args=(self.serial_port,), 
+            daemon=True
+        ).start()
+        logging.info("Started serial port monitor thread.")
 
         # Initialize JSON data structures
         self.ksk_pmod = {}
@@ -84,14 +93,28 @@ class SimpleSerialApp:
         threading.Thread(target=self.watch_json_files, daemon=True).start()
         logging.info("Started JSON watcher thread.")
 
-    def initialize_serial_port(self, port):
-        """Initialize the serial port."""
-        try:
-            self.ser = serial.Serial(port, 9600, timeout=1)
-            logging.info(f"Serial port '{port}' successfully opened.")
-        except serial.SerialException as e:
-            logging.error(f"Serial Port Error: Could not open serial port '{port}': {e}")
-            self.ser = None
+    def initialize_serial_port(self, port, baudrate=9600, timeout=1, max_retries=5, retry_interval=5):
+        """Initialize the serial port with reconnection logic."""
+        attempt = 0
+        while attempt < max_retries:
+            try:
+                self.ser = serial.Serial(port, baudrate, timeout=timeout)
+                logging.info(f"Serial port '{port}' successfully opened.")
+                return
+            except serial.SerialException as e:
+                attempt += 1
+                logging.error(f"Attempt {attempt}/{max_retries}: Could not open serial port '{port}': {e}")
+                time.sleep(retry_interval)
+        logging.critical(f"Failed to open serial port '{port}' after {max_retries} attempts.")
+        self.ser = None
+
+    def monitor_serial_port(self, port, baudrate=9600, timeout=1, check_interval=10):
+        """Monitor the serial port and attempt to reconnect if disconnected."""
+        while True:
+            if self.ser is None or not self.ser.is_open:
+                logging.warning(f"Serial port '{port}' is not open. Attempting to reconnect...")
+                self.initialize_serial_port(port, baudrate, timeout)
+            time.sleep(check_interval)
 
     def load_json_data(self):
         """Load ksk_pmod.json and pmod_settings.json."""
@@ -157,13 +180,12 @@ class SimpleSerialApp:
 
         main_frame = tk.Frame(self.master, bg='white')
         main_frame.grid(row=0, column=0, sticky="nsew")
-        main_frame.grid_rowconfigure(0, weight=1)
-        main_frame.grid_rowconfigure(1, weight=1)
+        main_frame.grid_rowconfigure((0, 1, 2), weight=1)
         main_frame.grid_columnconfigure(0, weight=1)
 
-        # Scanned Data Label centered
+        # Scanned Data Label
         scanned_frame = tk.Frame(main_frame, bg='white')
-        scanned_frame.grid(row=0, column=0, pady=20, padx=20, sticky="nsew")
+        scanned_frame.grid(row=0, column=0, pady=10, padx=20, sticky="nsew")
         scanned_frame.grid_rowconfigure(0, weight=1)
         scanned_frame.grid_columnconfigure(0, weight=1)
 
@@ -171,16 +193,16 @@ class SimpleSerialApp:
         scanned_label = tk.Label(
             scanned_frame,
             textvariable=self.scanned_var,
-            font=("Arial", 100, "bold"),
+            font=("Arial", 50, "bold"),
             fg='black',
             bg='white',
             anchor='center'
         )
         scanned_label.pack(expand=True)
 
-        # Steps Label centered
+        # Steps Label
         steps_frame = tk.Frame(main_frame, bg='white')
-        steps_frame.grid(row=1, column=0, pady=20, padx=20, sticky="nsew")
+        steps_frame.grid(row=1, column=0, pady=10, padx=20, sticky="nsew")
         steps_frame.grid_rowconfigure(0, weight=1)
         steps_frame.grid_columnconfigure(0, weight=1)
 
@@ -188,12 +210,29 @@ class SimpleSerialApp:
         steps_label = tk.Label(
             steps_frame,
             textvariable=self.steps_var,
-            font=("Arial", 80, "bold"),
+            font=("Arial", 40, "bold"),
             fg='black',
             bg='white',
             anchor='center'
         )
         steps_label.pack(expand=True)
+
+        # Stripping Length Label
+        stripping_frame = tk.Frame(main_frame, bg='white')
+        stripping_frame.grid(row=2, column=0, pady=10, padx=20, sticky="nsew")
+        stripping_frame.grid_rowconfigure(0, weight=1)
+        stripping_frame.grid_columnconfigure(0, weight=1)
+
+        self.stripping_var = tk.StringVar(value="")
+        stripping_label = tk.Label(
+            stripping_frame,
+            textvariable=self.stripping_var,
+            font=("Arial", 40, "bold"),
+            fg='black',
+            bg='white',
+            anchor='center'
+        )
+        stripping_label.pack(expand=True)
 
     def update_scanned_data(self, data):
         """Safely update the 'Scanned Data' label."""
@@ -202,12 +241,21 @@ class SimpleSerialApp:
 
     def update_steps(self, steps):
         """Safely update the 'Steps' label."""
-        self.steps_var.set(str(steps))
+        self.steps_var.set(f"Steps: {steps} mm: {steps * 0.02:.1f}")
         logging.info(f"Steps updated: {steps}")
+
+    def update_stripping_length(self, length):
+        """Safely update the 'Stripping Length' label."""
+        if length:
+            self.stripping_var.set(f"Stripping Length: {length}")
+        else:
+            self.stripping_var.set("Stripping Length: N/A")
+        logging.info(f"Stripping Length updated: {length}")
 
     def find_and_send_steps(self, ksk_number):
         """
         Find the PMOD for the given KSK number and send the corresponding steps to the machine.
+        Also retrieves and displays the stripping length.
         """
         ksk_str = str(ksk_number)
         with self.json_lock:
@@ -216,12 +264,15 @@ class SimpleSerialApp:
         if not pmod_entry:
             logging.warning(f"No PMOD found for KSKNr: {ksk_str}")
             self.update_steps("")
+            self.update_stripping_length("")
             return
 
         pmod_val = pmod_entry.get("pmod")
+        stripping_length = pmod_entry.get("stripping_length")
         if not pmod_val:
             logging.warning(f"No PMOD value found for KSKNr: {ksk_str}")
             self.update_steps("")
+            self.update_stripping_length("")
             return
 
         with self.json_lock:
@@ -230,15 +281,17 @@ class SimpleSerialApp:
         if not steps_entry:
             logging.warning(f"No steps setting found for PMOD: {pmod_val}")
             self.update_steps("")
+            self.update_stripping_length("")
             return
 
         steps = steps_entry.get("steps", 1)  # Default to 1 if not specified
 
         logging.info(f"PMOD for KSKNr {ksk_str}: {pmod_val}")
         logging.info(f"Steps for PMOD {pmod_val}: {steps}")
+        logging.info(f"Stripping Length for KSKNr {ksk_str}: {stripping_length}")
 
         # Prepare the JSON command
-        to_send = json.dumps({"V": "2", "S": str(steps)})
+        to_send = json.dumps({"V": "2", "S": str(steps/0.02)})
 
         try:
             if self.ser and self.ser.is_open:
@@ -252,11 +305,21 @@ class SimpleSerialApp:
                     logging.warning("No response from serial device.")
             else:
                 logging.error("Serial port is not open.")
-        except Exception as e:
+        except (serial.SerialException, OSError) as e:
             logging.error(f"Serial communication error: {e}")
+            if self.ser:
+                try:
+                    self.ser.close()
+                    logging.info("Closed serial port due to communication error.")
+                except Exception as close_error:
+                    logging.error(f"Error closing serial port: {close_error}")
+            self.ser = None  # This will trigger the monitor thread to attempt reconnection
+        except Exception as e:
+            logging.error(f"Unexpected error during serial communication: {e}")
 
-        # Update the 'Steps' label
+        # Update the 'Steps' and 'Stripping Length' labels
         self.update_steps(steps)
+        self.update_stripping_length(stripping_length)
 
     def read_from_scanner(self, scanner_device):
         """Continuously read from the scanner device and process KSK numbers."""

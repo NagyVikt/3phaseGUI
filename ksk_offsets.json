@@ -1625,15 +1625,7 @@
     },
     "830569528371": {
         "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528372": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528373": {
-        "pmod": "P8382743",
-        "stripping_length": 93
+        "stripping_length": 930.02
     },
     "830569528374": {
         "pmod": "P8382743",
@@ -1685,34 +1677,6 @@
     },
     "830569528386": {
         "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528387": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528388": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528389": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528390": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528391": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528392": {
-        "pmod": "P8382743",
-        "stripping_length": 93
-    },
-    "830569528393": {
-        "pmod": "P8382743",
-        "stripping_length": 93
+        "stripping_length": 9
     }
 }

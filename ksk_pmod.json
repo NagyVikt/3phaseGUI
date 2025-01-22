@@ -1051,6 +1051,10 @@
         "pmod": "P8382730",
         "stripping_length": 77
     },
+    "830569508207": {
+        "pmod": "P8382730",
+        "stripping_length": 77
+    },
     "830569528228": {
         "pmod": "P8382730",
         "stripping_length": 77
@@ -1714,5 +1718,13 @@
     "830569528393": {
         "pmod": "P8382743",
         "stripping_length": 93
+    },
+    "830569529340": {
+        "pmod": "P8382917",
+        "stripping_length": 93
+    },
+    "830569508195": {
+        "pmod" : "P8382728",
+        "stripping_length": 77
     }
 }

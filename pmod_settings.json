@@ -1,56 +1,59 @@
 {
     "P8382700": {
-        "steps": 1
+        "lengthmm": 300
     },
     "P8382730": {
-        "steps": 1
+        "lengthmm": 300
     },
     "P8378748": {
-        "steps": 1
+        "lengthmm": 1
     },
     "P8378749": {
-        "steps": 1
+        "lengthmm": 1
     },
     "P8382698": {
-        "steps": 1
+        "lengthmm": 300
     },
     "P8382699": {
-        "steps": 1
+        "lengthmm": 300
     },
     "P8378692": {
-        "steps": 2150
+        "lengthmm": 126.2
     },
     "P8382728": {
-        "steps": 1
+        "lengthmm": 300
     },
     "P8382741": {
-        "steps": 1
+        "lengthmm": 126.2
     },
     "P8378690": {
-        "steps": 1180 
+        "lengthmm": 104.3
     },
     "P8382731": {
-        "steps": 1
+        "lengthmm": 1
     },
     "P8382743": {
-        "steps": 1
+        "lengthmm": 104.3
     },
     "P8378691": {
-        "steps": 1750
+        "lengthmm": 114.5
     },
     "P8378765": {
-        "steps": 1
+        "lengthmm": 111.8
     },
     "P8378764": {
-        "steps": 1
+        "lengthmm": 131.8
     },
     "P8378763": {
-        "steps": 1
+        "lengthmm": 91.8
     },
     "P8378747": {
-        "steps": 1
+        "lengthmm": 1
     },
     "P8382742": {
-        "steps": 1
+        "lengthmm": 114.5
+    },
+    "P8382917": {
+        "lengthmm": 300
     }
 }
