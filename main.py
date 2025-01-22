@@ -291,7 +291,7 @@ class SimpleSerialApp:
         logging.info(f"Stripping Length for KSKNr {ksk_str}: {stripping_length}")
 
         # Prepare the JSON command
-        to_send = json.dumps({"V": "2", "S": str((lengthmm-82.4)/0.02)}) # 80.5
+        to_send = json.dumps({"V": "2", "S": str((lengthmm-81.8)/0.02)}) # 80.5 itt szamitjuk a step/mm
 
         try:
             if self.ser and self.ser.is_open:
