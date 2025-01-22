@@ -5254,3 +5254,13 @@
 2025-01-22 14:00:55,218 [INFO] Length updated: 126.2
 2025-01-22 14:00:55,219 [INFO] Stripping Length updated: 114
 2025-01-22 14:02:00,720 [INFO] Exited fullscreen mode on Linux.
+2025-01-22 14:03:40,334 [INFO] Entered fullscreen mode on Linux.
+2025-01-22 14:03:40,365 [INFO] Serial port '/dev/cino' successfully opened.
+2025-01-22 14:03:40,366 [INFO] Started serial port monitor thread.
+2025-01-22 14:03:40,369 [INFO] Loaded 'ksk_pmod.json' successfully.
+2025-01-22 14:03:40,370 [INFO] Loaded 'pmod_settings.json' successfully.
+2025-01-22 14:03:40,877 [INFO] Monitoring scanner device: /dev/scan
+2025-01-22 14:03:40,878 [INFO] JSON watcher thread started.
+2025-01-22 14:03:40,878 [INFO] Started JSON watcher thread.
+2025-01-22 14:03:40,878 [INFO] Started reading from scanner device: /dev/scan
+2025-01-22 14:03:58,713 [INFO] Exited fullscreen mode on Linux.
