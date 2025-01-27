@@ -1,0 +1,18 @@
+
+    <krosy>
+        <header>
+            <sourcehost>
+                <requestid>1</requestid>
+                <hostname>ksskringdistance01</hostname>
+                <ip>127.0.0.1</ip>
+                <macaddress>00-e0-4c-36-dd-42</macaddress>
+            </sourcehost>
+        <targethost>
+            <hostname>kssksun01</hostname>
+        </targethost>
+        </header>
+        <body device="ksskringdistance01" ordercount="1">
+            <order id="1" scancode="830569527899" type="1" state="1" timestamp="2025-01-22T13:52:32"/>
+        </body>
+    </krosy>
+    
